@@ -52,9 +52,7 @@ const SearchBar = (props) => {
           </div>
         )}
 
-        <div className="col text-left">
-          the cool stuff.
-        </div>
+        <div className="col text-left">the cool stuff.</div>
       </div>
     </div>
   );
