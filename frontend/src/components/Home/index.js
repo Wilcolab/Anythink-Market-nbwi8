@@ -1,5 +1,4 @@
 import Banner from "./Banner";
-import SearchBar from "./SearchBar";
 import MainView from "./MainView";
 import React from "react";
 import Tags from "./Tags";
@@ -50,8 +49,6 @@ class Home extends React.Component {
     return (
       <div className="home-page">
         <Banner />
-
-        <SearchBar />
 
         <div className="container page">
           <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
