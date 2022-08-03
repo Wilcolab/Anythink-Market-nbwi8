@@ -8,9 +8,9 @@ const SearchBar = (props) => {
     const { value } = event.target;
 
     props.dispatch({
-        type: APPLY_SEARCH_FILTER,
-        payload: { searchText: value },
-      });
+      type: APPLY_SEARCH_FILTER,
+      payload: { searchText: value },
+    });
   };
 
   return (

@@ -14,9 +14,7 @@ const ItemList = (props) => {
   let filteredItems = props.items;
   if (props.searchText && props.searchText.length >= 3) {
     filteredItems = filteredItems.filter((item) =>
-      item.title
-        .toLowerCase()
-        .includes(props.searchText.toLowerCase().trim())
+      item.title.toLowerCase().includes(props.searchText.toLowerCase().trim())
     );
   }
 
