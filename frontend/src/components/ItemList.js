@@ -11,10 +11,19 @@ const ItemList = (props) => {
     return <div className="py-4 no-items">No items are here... yet.</div>;
   }
 
+  let filteredItems = props.items;
+  if (props.searchText && props.searchText.length >= 3) {
+    filteredItems = filteredItems.filter((item) =>
+      item.title
+        .toLowerCase()
+        .includes(props.searchText.toLowerCase().trim())
+    );
+  }
+
   return (
     <div className="container py-2">
       <div className="row">
-        {props.items.map((item) => {
+        {filteredItems.map((item) => {
           return (
             <div className="col-sm-4 pb-2" key={item.slug}>
               <ItemPreview item={item} />
