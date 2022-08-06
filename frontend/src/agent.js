@@ -50,16 +50,21 @@ const Tags = {
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = (item) => Object.assign({}, item, { slug: undefined });
+const defaultItemLimit = 50;
 const Items = {
-  all: (page) => requests.get(`/items?${limit(1000, page)}`),
+  all: (page) => requests.get(`/items?${limit(defaultItemLimit, page)}`),
   bySeller: (seller, page) =>
-    requests.get(`/items?seller=${encode(seller)}&${limit(500, page)}`),
+    requests.get(
+      `/items?seller=${encode(seller)}&${limit(defaultItemLimit, page)}`
+    ),
   byTag: (tag, page) =>
-    requests.get(`/items?tag=${encode(tag)}&${limit(1000, page)}`),
+    requests.get(`/items?tag=${encode(tag)}&${limit(defaultItemLimit, page)}`),
   del: (slug) => requests.del(`/items/${slug}`),
   favorite: (slug) => requests.post(`/items/${slug}/favorite`),
   favoritedBy: (seller, page) =>
-    requests.get(`/items?favorited=${encode(seller)}&${limit(500, page)}`),
+    requests.get(
+      `/items?favorited=${encode(seller)}&${limit(defaultItemLimit, page)}`
+    ),
   feed: () => requests.get("/items/feed?limit=10&offset=0"),
   get: (slug) => requests.get(`/items/${slug}`),
   unfavorite: (slug) => requests.del(`/items/${slug}/favorite`),
