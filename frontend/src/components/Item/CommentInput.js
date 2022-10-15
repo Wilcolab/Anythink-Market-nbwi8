@@ -8,35 +8,39 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmit: (payload) => dispatch({ type: ADD_COMMENT, payload }),
 });
 
-const CommentInput = (props) => {
+const CommentInput = ({ slug, currentUser, onSubmit }) => {
   const [body, setBody] = useState("");
 
-  this.createComment = async (ev) => {
+  const setBodyValue = (ev) => {
+    setBody(ev.target.value);
+  };
+
+  const createComment = async (ev) => {
     ev.preventDefault();
-    agent.Comments.create(this.props.slug, {
-      body: this.state.body,
+    agent.Comments.create(slug, {
+      body: body,
     }).then((payload) => {
-      this.props.onSubmit(payload);
+      onSubmit(payload);
     });
     setBody("");
   };
 
   return (
-    <form className="card comment-form m-2" onSubmit={this.createComment}>
+    <form className="card comment-form m-2" onSubmit={createComment}>
       <div className="card-block">
         <textarea
           className="form-control"
           placeholder="Write a comment..."
           value={body}
-          onChange={setBody}
+          onChange={setBodyValue}
           rows="3"
         ></textarea>
       </div>
       <div className="card-footer">
         <img
-          src={this.props.currentUser.image}
+          src={currentUser.image}
           className="user-pic mr-2"
-          alt={this.props.currentUser.username}
+          alt={currentUser.username}
         />
         <button className="btn btn-sm btn-primary" type="submit">
           Post Comment
